@@ -13,5 +13,8 @@ RUN chmod u+x /run.sh
 # Add php5-fpm specific configuration
 ADD www.conf /etc/php5/fpm/pool.d/www.conf
 
+COPY docker-entrypoint.sh /entrypoint.sh
+ENTRYPOINT ["/entrypoint.sh"]
+
 expose 9001
 CMD ["/run.sh"]
