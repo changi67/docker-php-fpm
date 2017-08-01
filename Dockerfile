@@ -1,17 +1,22 @@
-FROM debian:jessie
+FROM debian:stretch
 
 ENV DEBIAN_FRONTEND noninteractive
+ENV http_proxy http://192.168.100.221:8080
 
 RUN apt-get update && apt-get dist-upgrade -y
-RUN apt-get install -y php5-fpm php5-ldap php5-mysql php5-gd php5-mcrypt graphviz php5-curl
-RUN apt-get clean
+RUN apt-get install -y php7.0-fpm php7.0-ldap php7.0-mysql php7.0-gd php7.0-mcrypt graphviz php7.0-curl php7.0-zip php7.0-xml php7.0-soap
+RUN apt-get clean && rm -rf /var/lib/apt
 
 # Add image configuration and scripts
 ADD run.sh /run.sh
 RUN chmod u+x /run.sh
 
-# Add php5-fpm specific configuration
-ADD www.conf /etc/php5/fpm/pool.d/www.conf
+# Add php7.0-fpm specific configuration
+ADD www.conf /etc/php/7.0/fpm/pool.d/www.conf
+
+# Create php run folder
+
+RUN mkdir /run/php
 
 COPY docker-entrypoint.sh /entrypoint.sh
 ENTRYPOINT ["/entrypoint.sh"]

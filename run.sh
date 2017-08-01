@@ -1,2 +1,2 @@
 #!/bin/bash
-exec php5-fpm --allow-to-run-as-root --nodaemonize --fpm-config /etc/php5/fpm/php-fpm.conf
+exec php-fpm7.0 --allow-to-run-as-root --nodaemonize --fpm-config /etc/php/7.0/fpm/php-fpm.conf
