@@ -1,7 +1,6 @@
 FROM debian:stretch
 
 ENV DEBIAN_FRONTEND noninteractive
-ENV http_proxy http://192.168.100.221:8080
 
 RUN apt-get update && apt-get dist-upgrade -y
 RUN apt-get install -y php7.0-fpm php7.0-ldap php7.0-mysql php7.0-gd php7.0-mcrypt graphviz php7.0-curl php7.0-zip php7.0-xml php7.0-soap
